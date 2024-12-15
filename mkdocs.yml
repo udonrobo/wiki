@@ -1,21 +1,41 @@
-site_name: My Docs
+site_name: Wiki
+site_url: https://udonrobo.github.io/Wiki/
 
 repo_url: https://github.com/udonrobo/Wiki
 repo_name: udonrobo/Wiki
 
-# Configuration
-theme:
-  icon:
-    repo: fontawesome/brands/git-alt 
-  name: material
-  features:
-    - content.code.copy
+nav:
+  - ホーム: index.md
+  - 制御班勉強会:
+      - はじめに: Practice/index.md
+      - コマンド: Practice/Command.md
+      - Git・GitHub: Practice/Git.md
 
+theme:
+  name: material
+  language: ja
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.path
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+    - search.share
+    - search.suggest
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences

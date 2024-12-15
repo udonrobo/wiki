@@ -1,19 +1,41 @@
-# Welcome to MkDocs
+---
+hide:
+  - navigation
+---
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+# このページについて
 
-## Commands
+mkdocs と mkdocs-material でページを生成し、GitHub Pages でページを配信しています。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+内容はマークダウン形式で書かれており、[udonrobo/Wiki](https://github.com/udonrobo/Wiki) レポジトリで管理されています。
 
-## Project layout
+!!! note annotate "mkdocs とは"
 
-```cpp title="main.cpp"
-int main()
-{
+    マークダウンからホームページを生成する静的サイトジェネレーターです。[mkdocs ドキュメント](https://www.mkdocs.org/)
 
-}
+!!! note annotate "mkdocs-material とは"
+
+    mkdocs の拡張テーマです。 [mkdocs-material ドキュメント](https://squidfunk.github.io/mkdocs-material)
+
+## 環境構築
+
+mkdocs インストール
+
+```sh
+pip install mkdocs
+pip install mkdocs-material
 ```
+
+## 編集
+
+VSCode 等で本レポジトリを開きます。本レポジトリのディレクトリ下で以下コマンドを実行すると、ローカルサーバーとブラウザが起動します。
+
+```sh
+python -m mkdocs serve --open
+```
+
+マークダウンファイルを編集し保存すると、自動的に変更が反映されます。
+
+## 公開
+
+GitHub へプッシュすると GitHub Actions によって自動的に公開されます。
