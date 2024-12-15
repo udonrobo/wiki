@@ -1,6 +1,12 @@
 # Wiki
 
-## mkdocs インストール方法
+## mkdocs
+
+mkdocs <https://www.mkdocs.org/>
+
+mkdocs-material <https://squidfunk.github.io/mkdocs-material>
+
+インストール
 
 ```sh
 python -m pip install mkdocs

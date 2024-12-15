@@ -1,3 +1,21 @@
 site_name: My Docs
+
+repo_url: https://github.com/udonrobo/Wiki
+repo_name: udonrobo/Wiki
+
+# Configuration
 theme:
+  icon:
+    repo: fontawesome/brands/git-alt 
   name: material
+  features:
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
