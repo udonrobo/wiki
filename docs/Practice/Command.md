@@ -1,8 +1,8 @@
 # コマンド
 
-Windows の場合、コマンドは「ターミナル」上で実行します。
+Windows の場合、コマンドはターミナル上で実行します。
 
-今までエクスプローラーで行っていたファイル操作を、コマンドでできるようになる。
+今までエクスプローラーで行っていたファイル操作を、コマンドでできます。
 
 → 慣れれば速く、文字なので伝えやすい！
 
@@ -37,7 +37,7 @@ $
 - mkdir (ディレクトリ作成)
 - ...
 
-使いつつ覚えていけば大丈夫です 👍 エクスプローラーでの操作に対応したコマンドがあることが分かれば、グーグルニキが教えてくれます！
+使いつつ覚えていけば大丈夫です。エクスプローラーでの操作に対応したコマンドがあることが分かれば、グーグルニキが教えてくれます！
 
 ### 🌟 **ls コマンド**
 
@@ -52,6 +52,7 @@ ls
 ```sh
 ~/Desktop/dev
 ls
+
 AA/                   ConsoleApplication3/  Harurobo2023-Ateam/  OpenSiv3D_0.6.141/  rust-test/         WeatherApp-1/
 addlinenum/           ConsoleApplication4/  IRRemoteControl/     OpenSiv3D_0.6.142/  SortAlgorithm/     Website/
 apptest/              ControllerUnit/       ...
