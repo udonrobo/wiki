@@ -2,11 +2,11 @@
 
 Windows の場合、コマンドはターミナル上で実行します。
 
-今までエクスプローラーで行っていたファイル操作を、コマンドでできます。
+今までエクスプローラーで行っていたファイル操作を、コマンドでもできます。
 
 → 慣れれば速く、文字なので伝えやすい！
 
-![alt text](image.png)
+![alt text](terminal.png)
 
 ターミナルを起動すると、今いるディレクトリが表示されます。
 
@@ -15,13 +15,13 @@ Windows の場合、コマンドはターミナル上で実行します。
 $
 ```
 
-!!! note annotate
+!!! note
 
     エクスプローラーからも起動できます。(開きたいディレクトリを右クリック)
 
     ディレクトリに移動した状態で起動してくれます！
 
-    ![alt text](image-2.png)
+    ![alt text](open_from_explorer.png)
 
 ## 使えると熱いコマンドたち
 
@@ -96,7 +96,7 @@ cd -
 ~/Desktop/dev/Robocon2024-Bteam
 ```
 
-!!! note annotate
+!!! note
 
     ディレクトリ名は全て入力する必要はありません。途中まで打ち Tab キーを押すことで補完できます。
 
@@ -140,7 +140,7 @@ drwxr-xr-x 1 user 197609         0 12月 15 23:14 AA/
 start <ファイル名 or ディレクトリ名>
 ```
 
-![alt text](image-6.png)
+![alt text](start.png)
 
 ### 🌟 **code コマンド**
 
@@ -153,7 +153,7 @@ code .
 
 結果
 
-![alt text](image-7.png)
+![alt text](code.png)
 
 ### 🌟 **winget コマンド**
 

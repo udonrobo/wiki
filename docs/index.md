@@ -7,13 +7,13 @@ hide:
 
 mkdocs と mkdocs-material でページを生成し、GitHub Pages でページを配信しています。
 
-内容はマークダウン形式で書かれており、[udonrobo/Wiki](https://github.com/udonrobo/Wiki) レポジトリで管理されています。
+内容はマークダウン形式で、[udonrobo/Wiki](https://github.com/udonrobo/Wiki) レポジトリで管理しています。
 
-!!! note annotate "mkdocs とは"
+!!! note "mkdocs とは"
 
     マークダウンからホームページを生成する静的サイトジェネレーターです。[mkdocs ドキュメント](https://www.mkdocs.org/)
 
-!!! note annotate "mkdocs-material とは"
+!!! note "mkdocs-material とは"
 
     mkdocs の拡張テーマです。 [mkdocs-material ドキュメント](https://squidfunk.github.io/mkdocs-material)
 

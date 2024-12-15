@@ -7,9 +7,10 @@ repo_name: udonrobo/Wiki
 nav:
   - ホーム: index.md
   - 制御班勉強会:
-      - はじめに: Practice/index.md
-      - コマンド: Practice/Command.md
-      - Git・GitHub: Practice/Git.md
+      - はじめに: practice/index.md
+      - コマンド: practice/command/index.md
+      - Git・GitHub: practice/git/index.md
+      - C++: practice/cpp/index.md
 
 theme:
   name: material
