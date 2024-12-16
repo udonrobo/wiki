@@ -302,3 +302,203 @@ uint8_t RSH = a >> 1; // RSH == 0b0101
 ## 初級編 (制御構文)
 
 ### 🌟if 文
+
+条件分岐をする機能。
+
+```cpp
+int value = 1;
+
+if (value == 1)
+{
+    // value が 1 の場合
+}
+else
+{
+    // value が 1 以外の場合
+}
+```
+
+!!! note "比較演算を使わない if 文"
+
+    if 文自体が条件式を評価するため、比較演算を使わない if 文も書けます。
+
+    ```cpp
+    int value = 1;
+
+    if (value)
+    {
+        // value が 0 以外の場合
+    }
+    else
+    {
+        // value が 0 の場合
+    }
+    ```
+
+!!! tip "if 文のネストを深くしないコツ"
+
+    複数の条件を持つ if 文はネストが深くなりがちです。
+
+    ```cpp
+    int main()
+    {
+        int a = input();
+        if (a == 1)
+        {
+            int b = input();
+            if (b == 2)
+            {
+                int c = input();
+                if (c == 3)
+                {
+                    std::cout << "OK" << std::endl;
+                }
+            }
+        }
+    }
+    ```
+
+    早期リターンを使うとネストを浅くできます。
+
+    ```cpp
+    bool validate(int a, int b, int c)
+    {
+        if (a != 1)
+        {
+            return false;
+        }
+
+        if (b != 2)
+        {
+            return false;
+        }
+
+        if (c != 3)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    int main()
+    {
+        int a = input();
+        int b = input();
+        int c = input();
+
+        if (validate(a, b, c))
+        {
+            std::cout << "OK" << std::endl;
+        }
+    }
+    ```
+
+    もしくは論理積を使うとネストを浅くできます。
+
+    ```cpp
+    int main()
+    {
+        int a = input();
+        int b = input();
+        int c = input();
+
+        if (a == 1 && b == 2 && c == 3)
+        {
+            std::cout << "OK" << std::endl;
+        }
+    }
+    ```
+
+!!! note "else if 文"
+
+    else if 文を使うことで、条件を次々絞っていくように判定できます。
+
+    ```cpp
+    int value = 1;
+
+    if (value == 1)
+    {
+        // value が 1 の場合
+    }
+    else if (value < 10)
+    {
+        // value が 1 でなく、value が 10 未満の場合
+    }
+    ```
+
+    他の言語には `elif` のような構文がありますが、C、C++ にはありません。
+
+    実は else if 文というものは存在せず、`else` と `if` 文を組み合わせて使っています。
+
+    ```cpp
+    int value = 1;
+
+    if (value == 1)
+    {
+        // value が 1 の場合
+    }
+    else
+        if (value < 10)
+        {
+            // value が 10 未満の場合 (1は含まない)
+        }
+    ```
+
+### 🌟while 文
+
+繰り返し処理をする機能。
+
+```cpp
+while (true)
+{
+    // 無限ループ
+}
+```
+
+実用的な例
+
+```cpp
+while (データが残っている())
+{
+    データを取り出して処理する();
+}
+```
+
+!!! note "while 文でやりがちなバグ"
+
+    ループ毎にカウントアップするようなプログラムの場合、カウントアップのタイミングを間違えると値の変化が予期しないものになります。→ for 文を使うことでこのようなバグを防げます。
+
+    ```cpp
+    int i = 0;
+
+    while (i < 3)
+    {
+        i++;
+        std::cout << i << std::endl;
+    }
+    ```
+
+    ```  plaintext
+    1
+    2
+    3
+    ```
+
+    ```cpp
+    int i = 0;
+
+    while (i < 3)
+    {
+        std::cout << i << std::endl;
+        i++;
+    }
+    ```
+
+    ```  plaintext
+    0
+    1
+    2
+    ```
+
+### 🌟for 文
