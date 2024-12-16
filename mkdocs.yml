@@ -23,12 +23,12 @@ theme:
     - navigation.path
     - navigation.top
     - content.code.copy
+    - content.tabs.link
     - search.highlight
     - search.share
     - search.suggest
-  
-  palette:
 
+  palette:
     # Default palette
     # - media: "(prefers-color-scheme)"
     #   toggle:
@@ -64,6 +64,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - footnotes
   - attr_list
   - md_in_html
