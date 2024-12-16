@@ -1,8 +1,8 @@
-site_name: Wiki
-site_url: https://udonrobo.github.io/Wiki/
+site_name: wiki
+site_url: https://udonrobo.github.io/wiki/
 
-repo_url: https://github.com/udonrobo/Wiki
-repo_name: udonrobo/Wiki
+repo_url: https://github.com/udonrobo/wiki
+repo_name: udonrobo/wiki
 
 nav:
   - ホーム: index.md

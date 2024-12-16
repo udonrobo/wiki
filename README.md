@@ -1,3 +1,3 @@
 # Wiki
 
-<https://udonrobo.github.io/Wiki/>
+<https://udonrobo.github.io/wiki/>
