@@ -26,9 +26,16 @@ pip install mkdocs
 pip install mkdocs-material
 ```
 
-## 編集
+## 編集方法
 
-VSCode 等で本レポジトリを開きます。本レポジトリのディレクトリ下で以下コマンドを実行すると、ローカルサーバーとブラウザが起動します。
+udonrobo/wiki レポジトリをクローンし、VSCode 等で本レポジトリを開きます。
+
+```sh
+git clone https://github.com/udonrobo/wiki.git
+cd wiki/
+```
+
+wiki レポジトリのディレクトリ下で以下コマンドを実行すると、ローカルサーバーとブラウザが起動します。
 
 ```sh
 python -m mkdocs serve --open

@@ -11,7 +11,12 @@ nav:
       - コマンド: practice/command/index.md
       - Git・GitHub: practice/git/index.md
       - C++: practice/cpp/index.md
-      - モーター回しましょ: practice/motor/index.md
+      - モーターとクラス: practice/motor/index.md
+      - ファイル分割: practice/file_splitting/index.md
+      - UdonLibraryの使い方: practice/udon_library/index.md
+      - 通信について: practice/communication/index.md
+      - オムニを動かそう: practice/omni/index.md
+      - ロボマスモーター: practice/robomaster_motor/index.md
 
 theme:
   name: material
