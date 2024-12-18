@@ -81,7 +81,7 @@ class Motor
 };
 ```
 
-```cpp title="プリプロセス後のMain.ino"
+```cpp title="インクルード展開後のMain.ino"
 class Motor
 {
 };
@@ -110,7 +110,7 @@ class Motor
 };
 ```
 
-```cpp title="プリプロセス後のMain.ino"
+```cpp title="インクルード展開後のMain.ino"
 class Motor
 {
 };
@@ -135,7 +135,7 @@ class Motor
 #endif
 ```
 
-```cpp title="プリプロセス後のMain.ino"
+```cpp title="インクルード展開後のMain.ino"
 #ifndef MOTOR_HPP
 #define MOTOR_HPP
 
@@ -154,6 +154,12 @@ class Motor
 };
 
 #endif
+```
+
+```cpp title="プリプロセス後のMain.ino"
+class Motor
+{
+};
 ```
 
 </div>
@@ -178,8 +184,6 @@ graph LR
     - `.i` : プリプロセス後のファイル (ほぼソースファイル)
     - `.o` : オブジェクトファイル
     - `.exe` : 実行ファイル (Windows)
-    - `.uf2` : 実行ファイル (Raspberry Pi Pico)
-    - `.hex` : 実行ファイル (Arduino)
 
 #### ヘッダーファイルがある場合
 
