@@ -24,6 +24,7 @@ theme:
   icon:
     repo: fontawesome/brands/github
   features:
+    - navigation.footer
     - navigation.tracking
     - navigation.tabs
     - navigation.path
@@ -56,6 +57,11 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+extra:
+  generator: false
+
+copyright: udonrobo © 2024
 
 markdown_extensions:
   - pymdownx.highlight:
