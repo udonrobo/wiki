@@ -8,20 +8,28 @@ copyright: udonrobo © 2024
 
 nav:
   - ホーム: index.md
+  - センサー:
+      - スイッチ: sensor/switch/index.md
+      - ロータリーエンコーダー: sensor/rotary_encoder/index.md
+      # - 超音波センサー: sensor/ultrasonic/index.md
+      # - カラーセンサー: sensor/color/index.md
+      - BNO055(ジャイロセンサ): sensor/bno055/index.md
   - アクチュエータ:
-    - ロボマスモーター: actuator/robomaster_motor/index.md
-    - DCモーター: actuator/motor/index.md
-    - サーボモーター: actuator/servo/index.md
+      - DCモーター: actuator/motor/index.md
+      - ロボマスモーター: actuator/robomaster_motor/index.md
+      - サーボモーター: actuator/servo/index.md
+  - 基板:
+      - JLCPCB 発注手順: pcb/jlcpcb/index.md
   - 制御班勉強会:
-    - はじめに: practice/index.md
-    - コマンド: practice/command/index.md
-    - Git・GitHub: practice/git/index.md
-    - C++: practice/cpp/index.md
-    - モーターとクラス: practice/motor/index.md
-    - ファイル分割: practice/file_splitting/index.md
-    - UdonLibraryの使い方: practice/udon_library/index.md
-    - オムニを動かそう: practice/omni/index.md
-    - 通信について: practice/communication/index.md
+      - はじめに: practice/index.md
+      - コマンド: practice/command/index.md
+      - Git・GitHub: practice/git/index.md
+      - C++: practice/cpp/index.md
+      - モーターとクラス: practice/motor/index.md
+      - ファイル分割: practice/file_splitting/index.md
+      - UdonLibraryの使い方: practice/udon_library/index.md
+      - オムニを動かそう: practice/omni/index.md
+      - 通信について: practice/communication/index.md
 
 theme:
   name: material

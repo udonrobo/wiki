@@ -5,7 +5,9 @@ hide:
 
 # このページについて
 
-mkdocs と mkdocs-material でページを生成し、GitHub Pages でページを配信しています。
+香川高専高松キャンパス機械システム研究部 (ロボ研) の wiki です。
+
+このページは mkdocs と mkdocs-material によって生成され、GitHub Pages で配信しています。
 
 内容はマークダウン形式で、[udonrobo/wiki](https://github.com/udonrobo/wiki) レポジトリで管理しています。
 
