@@ -155,9 +155,9 @@ A, B 線の電圧値とモーターの回転方向は以下のように対応し
 例えば逆転で 50% の出力値を送る場合、次のように記述します。ピン番号は定数で定義しておくと変更しやすくなります。
 
 ```cpp
-const int pinA = 2; // A 線のピン番号
-const int pinB = 3; // B 線のピン番号
-const int pinP = 4; // P 線のピン番号
+const int pinA = 0; // A 線のピン番号
+const int pinB = 2; // B 線のピン番号
+const int pinP = 1; // P 線のピン番号
 
 void setup()
 {
@@ -239,13 +239,13 @@ void loop()
 === "関数化前"
 
     ```cpp
-    const int motor1PinA = 2;
-    const int motor1PinB = 3;
-    const int motor1PinP = 4;
+    const int motor1PinA = 0;
+    const int motor1PinB = 2;
+    const int motor1PinP = 1;
 
-    const int motor2PinA = 5;
-    const int motor2PinB = 6;
-    const int motor2PinP = 7;
+    const int motor2PinA = 3;
+    const int motor2PinB = 5;
+    const int motor2PinP = 4;
 
     void setup()
     {
@@ -274,13 +274,13 @@ void loop()
 === "関数化後"
 
     ```cpp hl_lines="9-13 15-20 24 25 30 31"
-    const int motor1PinA = 2;
-    const int motor1PinB = 3;
-    const int motor1PinP = 4;
+    const int motor1PinA = 0;
+    const int motor1PinB = 2;
+    const int motor1PinP = 1;
 
-    const int motor2PinA = 5;
-    const int motor2PinB = 6;
-    const int motor2PinP = 7;
+    const int motor2PinA = 3;
+    const int motor2PinB = 5;
+    const int motor2PinP = 4;
 
     void motorBegin(int pinA, int pinB)
     {
@@ -317,17 +317,17 @@ void loop()
 <div class="grid" markdown>
 
 ```cpp title="構造体を使わない場合"
-const int motor1PinA = 2;
-const int motor1PinB = 3;
-const int motor1PinP = 4;
+const int motor1PinA = 0;
+const int motor1PinB = 2;
+const int motor1PinP = 1;
 
-const int motor2PinA = 5;
-const int motor2PinB = 6;
-const int motor2PinP = 7;
+const int motor2PinA = 3;
+const int motor2PinB = 5;
+const int motor2PinP = 4;
 
-const int motor3PinA = 8;
-const int motor3PinB = 9;
-const int motor3PinP = 10;
+const int motor3PinA = 6;
+const int motor3PinB = 8;
+const int motor3PinP = 7;
 ```
 
 ```cpp title="構造体を使った場合"
@@ -338,9 +338,9 @@ struct Motor
     int pinP;
 };
 
-Motor motor1{ 2, 3, 4 };
-Motor motor2{ 5, 6, 7 };
-Motor motor3{ 8, 9, 10 };
+Motor motor1{ 0, 2, 1 };
+Motor motor2{ 3, 5, 4 };
+Motor motor3{ 6, 8, 7 };
 ```
 
 </div>
@@ -394,8 +394,8 @@ void motorMove(const Motor& motor, int power)
     analogWrite(motor.pinP, abs(power));
 }
 
-Motor motor1{ 2, 3, 4 };
-Motor motor2{ 5, 6, 7 };
+Motor motor1{ 0, 2, 1 };
+Motor motor2{ 3, 5, 4 };
 
 void setup()
 {
@@ -438,8 +438,8 @@ void motorMove(const Motor& motor, int power)
 }
 
 
-Motor motor1{ 2, 3, 4 };
-Motor motor2{ 5, 6, 7 };
+Motor motor1{ 0, 2, 1 };
+Motor motor2{ 3, 5, 4 };
 
 void setup()
 {
@@ -476,8 +476,8 @@ public:
     }
 };
 
-Motor motor1{ 2, 3, 4 };
-Motor motor2{ 5, 6, 7 };
+Motor motor1{ 0, 2, 1 };
+Motor motor2{ 3, 5, 4 };
 
 void setup()
 {
@@ -529,7 +529,7 @@ public:
 ```
 
 ```cpp
-Motor motor1{ 2, 3, 4 };
+Motor motor1{ 0, 2, 1 };
 
 void setup()
 {
@@ -586,7 +586,7 @@ public:
 int main()
 {
 
-    Motor motor{ 2, 3, 4 };  // "Motor is created" が表示される
+    Motor motor{ 0, 2, 1 };  // "Motor is created" が表示される
 
 } // スコープから抜けるとインスタンスが破棄され、"Motor is deleted" が表示される
 ```
@@ -700,8 +700,8 @@ public:
     }
 };
 
-Motor motor1{ 2, 3, 4 };
-Motor motor2{ 5, 6, 7 };
+Motor motor1{ 0, 2, 1 };
+Motor motor2{ 3, 5, 4 };
 
 void setup()
 {
