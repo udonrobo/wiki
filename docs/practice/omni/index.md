@@ -70,6 +70,8 @@
 
 コントローラーに載っている LoRa モジュールからデータを受信してみましょう。
 
+`Udon::E220PadPS5` クラスを使うと簡単にコントローラーのデータを取得できます。
+
 ```cpp
 #include <Udon.hpp>
 
@@ -96,12 +98,25 @@ void loop()
         Serial.println("Cross button is clicked.");
     }
 
-    // 三角ボタンが押された瞬間
+    // 三角ボタンが押されている間
     if (pad.getTriangle().press)
     {
         Serial.println("Triangle button is pressed.");
     }
 
     delay(10);
+}
+```
+
+スティックの値は `Udon::Vec2` 型で取得できます。
+
+```cpp
+void loop()
+{
+    pad.update();
+
+    Udon::Vec2 leftStick = pad.getLeftStick();
+
+    Serial.println(leftStick.x);
 }
 ```
