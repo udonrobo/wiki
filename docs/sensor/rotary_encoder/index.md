@@ -45,12 +45,17 @@
 
     void setup()
     {
+        Serial.begin(115200);
         encoder.begin();
     }
 
     void loop()
     {
         const int32_t count = encoder.read();
+
+        Serial.println(count);
+        
+        delay(10);
     }
     ```
 

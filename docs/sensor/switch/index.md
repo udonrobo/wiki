@@ -21,11 +21,16 @@ const int pin = 2;  // スイッチのピン番号
 
 void setup()
 {
+    Serial.begin(115200);
     pinMode(pin, INPUT_PULLUP);
 }
 
 void loop()
 {
     const bool isPressed = digitalRead(pin) == LOW;
+
+    Serial.println(isPressed);
+
+    delay(10);
 }
 ```
