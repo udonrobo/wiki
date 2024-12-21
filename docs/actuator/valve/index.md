@@ -6,9 +6,9 @@
 
 ## 🌟 配線
 
-定格電圧は 12V なので DCDC コンバーターで降圧し供給します。
+定格電圧は 12V なので DCDC コンバーターで降圧し供給します。極性があるので注意してください。
 
--- 画像 --
+![alt text](<Photo 2024-12-21, 14 03 41.jpg>)
 
 ## 🌟 ファームウエア
 
@@ -23,12 +23,8 @@ void setup()
 void loop()
 {
     digitalWrite(pin, HIGH);
-    delay(100);
+    delay(1000);
     digitalWrite(pin, LOW);
     delay(1000);
 }
 ```
-
-!!! warning
-
-    長時間電流を流すと発熱するため、1 秒以上連続で ON にしないようにしてください。
