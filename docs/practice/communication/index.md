@@ -349,6 +349,7 @@ static Udon::CanReader<int> reader{ bus, 0x001 };
 
 void setup()
 {
+    Serial.begin(115200);
     bus.begin();
 }
 
@@ -359,6 +360,8 @@ void loop()
     if (const auto message = reader.getMessage())
     {
         int value = message.value();  // 200
+
+        Serial.println(value);
     }
     else
     {
@@ -422,6 +425,7 @@ static Udon::CanReader<int> reader2{ bus, 0x002 };
 
 void setup()
 {
+    Serial.begin(115200);
     bus.begin();
 }
 
@@ -432,6 +436,7 @@ void loop()
     if (const auto message1 = reader1.getMessage())
     {
         int value = message1.value();  // 100
+        Serial.println(value);
     }
     else
     {
@@ -441,6 +446,7 @@ void loop()
     if (const auto message2 = reader2.getMessage())
     {
         int value = message2.value();  // 200
+        Serial.println(value);
     }
     else
     {
@@ -494,6 +500,7 @@ static Udon::CanReader<Udon::Message::Motor> motor{ bus, 0x001 };
 
 void setup()
 {
+    Serial.begin(115200);
     bus.begin();
 }
 
@@ -504,6 +511,7 @@ void loop()
     if (const auto message = motor.getMessage())
     {
         int16_t power = message->power;
+        Serial.println(power);
     }
     else
     {
@@ -539,6 +547,7 @@ void loop()
 
     void setup()
     {
+        Serial.begin(115200);
         bus.begin();
     }
 
@@ -552,6 +561,8 @@ void loop()
         if (const auto message = encoder1.getMessage())
         {
             int32_t count = message->count;  // 300
+            Serial.print(count);
+            Serial.print('\t');
         }
         else
         {
@@ -561,6 +572,7 @@ void loop()
         if (const auto message = encoder2.getMessage())
         {
             int32_t count = message->count;  // 400
+            Serial.println(count);
         }
         else
         {
@@ -581,6 +593,7 @@ void loop()
 
     void setup()
     {
+        Serial.begin(115200);
         bus.begin();
     }
 
@@ -591,6 +604,8 @@ void loop()
         if (const auto message = motor1.getMessage())
         {
             int16_t power = message->power;  // 100
+            Serial.print(power);
+            Serial.print('\t');
         }
         else
         {
@@ -600,6 +615,7 @@ void loop()
         if (const auto message = motor2.getMessage())
         {
             int16_t power = message->power;  // 200
+            Serial.println(power);
         }
         else
         {
