@@ -436,7 +436,8 @@ void loop()
     if (const auto message1 = reader1.getMessage())
     {
         int value = message1.value();  // 100
-        Serial.println(value);
+        Serial.print(value);
+        Serial.print('\t');
     }
     else
     {
