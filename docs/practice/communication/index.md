@@ -154,7 +154,7 @@ void loop()
 {
     uint8_t data[3];
 
-    Wire.requestFrom(0x49, sizeof data); // 0x50 へデータを要求
+    Wire.requestFrom(0x50, sizeof data); // 0x50 へデータを要求
 
     // この間にスレーブからデータが送られる
 
