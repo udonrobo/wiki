@@ -104,3 +104,146 @@
         motor.move(100);
     }
     ```
+
+## 🌟 実際のコード例
+
+メインマイコンから CAN で出力値を受信し、サブマイコンでモーターを制御する例です。
+
+一つのモーターにつき、一つの CNA ID を割り当てて制御します。
+
+```cpp title="サブマイコン側 (Raspberry Pi Pico)"
+#include <Udon.hpp>
+
+class CanMotorReader
+{
+    Udon::CanReader<Udon::Message::Motor> canReader;
+    Udon::Motor3 motor;
+
+public:
+    CanMotorReader(Udon::CanReader<Udon::Message::Motor>&& canReader, Udon::Motor3&& motor)
+        : canReader{ std::move(canReader) }
+        , motor{ std::move(motor) }
+    {
+    }
+
+    void begin()
+    {
+        motor.begin();
+    }
+
+    void update()
+    {
+        if (const auto message = canReader.getMessage())
+        {
+            motor.move(message->speed);
+        }
+        else
+        {
+            motor.stop();
+        }
+    }
+};
+
+static Udon::CanBusSpi bus;
+
+static CanMotorReader motors[] {
+    CanMotorReader{ 
+        Udon::CanReader<Udon::Message::Motor>{ bus, 0x001 },
+        Udon::Motor3{ 0, 2, 1 }
+    },
+    CanMotorReader{ 
+        Udon::CanReader<Udon::Message::Motor>{ bus, 0x002 },
+        Udon::Motor3{ 3, 5, 4 }
+    },
+    CanMotorReader{ 
+        Udon::CanReader<Udon::Message::Motor>{ bus, 0x003 },
+        Udon::Motor3{ 6, 8, 7 }
+    },
+    CanMotorReader{ 
+        Udon::CanReader<Udon::Message::Motor>{ bus, 0x004 },
+        Udon::Motor3{ 9, 11, 10 }
+    },
+};
+
+static Udon::LoopCycleController loopCtrl{ 10000 };
+
+void setup()
+{
+    bus.begin();
+
+    for (auto& motor : motors)
+    {
+        motor.begin();
+    }
+}
+
+void loop()
+{
+    bus.update();
+
+    for (auto& motor : motors)
+    {
+        motor.update();
+    }
+
+    loopCtrl.update();
+}
+```
+
+```cpp title="メインマイコン側 (Teensy4.0)"
+#include <Udon.hpp>
+
+class CanMotorWriter
+{
+    Udon::CanWriter<Udon::Message::Motor> canWriter;
+
+public:
+    CanMotorWriter(Udon::CanWriter<Udon::Message::Motor>&& canWriter)
+        : canWriter{ std::move(canWriter) }
+    {
+    }
+
+    void move(int16_t power)
+    {
+        canWriter.setMessage({ power });
+    }
+
+    void stop()
+    {
+        move(0);
+    }
+};
+
+static Udon::CanBusTeensy<CAN1> bus;
+
+static CanMotorWriter motors[] {
+    CanMotorWriter{{ bus, 0x001 }},
+    CanMotorWriter{{ bus, 0x002 }},
+    CanMotorWriter{{ bus, 0x003 }},
+    CanMotorWriter{{ bus, 0x004 }},
+};
+
+static Udon::LoopCycleController loopCtrl{ 10000 };
+
+void setup()
+{
+    bus.begin();
+
+    for (auto& motor : motors)
+    {
+        motor.begin();
+    }
+}
+
+void loop()
+{
+    bus.update();
+
+    motors[0].move(100);
+    motors[1].move(200);
+    motors[2].move(-100);
+    motors[3].move(-200);
+
+    loopCtrl.update();
+}
+```

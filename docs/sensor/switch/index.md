@@ -10,7 +10,7 @@
 
 ![alt text](<Photo 2024-12-21, 11 41 00.jpg>)
 
-## 🌟 ファームウエア
+## 🌟 最小構成のコード例
 
 digitalRead() 関数を使ってスイッチの状態を読み取ります。押されていないときに入力電圧が不安定にならないようにプルアップします。
 
@@ -32,5 +32,166 @@ void loop()
     Serial.println(isPressed);
 
     delay(10);
+}
+```
+
+## 🌟 実際のコード例
+
+サブマイコンでスイッチを状態を計測し、CAN でメッセージを送信する例です。
+
+一つのスイッチにつき、一つの CNA ID を持たせて送信します。
+
+```cpp title="サブマイコン側 (Raspberry Pi Pico)"
+#include <Udon.hpp>
+
+class Switch
+{
+    uint8_t pin;
+
+public:
+    Switch(uint8_t pin)
+        : pin{ pin }
+    {}
+
+    void begin()
+    {
+        pinMode(pin, INPUT_PULLUP);
+    }
+
+    bool isPressed() const
+    {
+        return digitalRead(pin) == LOW;
+    }
+};
+
+class CanSwitchWriter
+{
+    Switch sw;
+    Udon::CanWriter<Udon::Message::Switch> canWriter;
+
+public:
+    CanSwitchWriter(Switch&& sw, Udon::CanWriter<Udon::Message::Switch>&& canWriter)
+        : sw{ std::move(sw) }
+        , canWriter{ std::move(canWriter) }
+    {
+    }
+
+    void begin()
+    {
+        sw.begin();
+    }
+
+    void update()
+    {
+        const bool isPressed = sw.isPressed();
+        canWriter.setMessage({ isPressed });
+    }
+};
+
+static Udon::CanBusSpi bus;
+
+static CanSwitchWriter switches[] {
+    CanSwitchWriter {
+        Switch{ 2 },
+        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x001 }
+    },
+    CanSwitchWriter {
+        Switch{ 4 },    
+        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x002 }
+    },
+    CanSwitchWriter {
+        Switch{ 6 },
+        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x003 }
+    },
+    CanSwitchWriter {
+        Switch{ 8 },
+        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x004 }
+    },
+};
+
+static Udon::LoopCycleController loopCtrl{ 1000 };
+
+void setup()
+{
+    bus.begin();
+
+    for (auto& sw : switches)
+    {
+        sw.begin();
+    }
+}
+
+void loop()
+{
+    bus.update();
+
+    for (auto& sw : switches)
+    {
+        sw.update();
+    }
+
+    loopCtrl.update();
+}
+```
+
+```cpp title="メインマイコン側 (Teensy4.0)"
+#include <Udon.hpp>
+
+class CanSwitchReader
+{
+    Udon::CanReader<Udon::Message::Switch> canReader;
+
+    Udon::Input status;
+
+public:
+    CanSwitchReader(Udon::CanReader<Udon::Message::Switch>&& canReader)
+        : canReader{ std::move(canReader) }
+    {
+    }
+    
+    bool isPressed() const
+    {
+        if (const auto message = canReader.getMessage())
+        {
+            return message->press;
+        }
+        
+        Serial.println("Switch node not found");
+        return false;
+    }
+};
+
+static Udon::CanBusTeensy<CAN1> bus;
+
+static CanSwitchReader switches[] {
+    CanSwitchReader{{ bus, 0x001 }},
+    CanSwitchReader{{ bus, 0x002 }},
+    CanSwitchReader{{ bus, 0x003 }},
+    CanSwitchReader{{ bus, 0x004 }},
+};
+
+static Udon::LoopCycleController loopCtrl{ 10000 };
+
+void setup()
+{
+    Serial.begin(115200);
+    bus.begin();
+}
+
+void loop()
+{
+    bus.update();
+
+    const bool isPressed1 = switches[0].isPressed();
+    const bool isPressed2 = switches[1].isPressed();
+    const bool isPressed3 = switches[2].isPressed();
+    const bool isPressed4 = switches[3].isPressed();
+
+    Serial.println(isPressed1);
+    Serial.println(isPressed2);
+    Serial.println(isPressed3);
+    Serial.println(isPressed4);
+
+    loopCtrl.update();
 }
 ```
