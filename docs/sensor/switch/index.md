@@ -141,8 +141,6 @@ class CanSwitchReader
 {
     Udon::CanReader<Udon::Message::Switch> canReader;
 
-    Udon::Input status;
-
 public:
     CanSwitchReader(Udon::CanReader<Udon::Message::Switch>&& canReader)
         : canReader{ std::move(canReader) }

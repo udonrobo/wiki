@@ -164,15 +164,11 @@ public:
     {
     }
 
-    int32_t getCount() const
+    Udon::Optional<int32_t> getCount() const
     {
-        if (const auto message = canReader.getMessage())
-        {
-            return message->count;
-        }
-
-        Serial.println("Encoder node not found");
-        return 0;
+        return canReader
+            .getMessage()
+            .transform([](const auto& message) { return message.count; });
     }
 };
 

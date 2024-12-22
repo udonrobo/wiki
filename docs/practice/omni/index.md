@@ -72,9 +72,11 @@
 
 920MHz 帯で通信する無線モジュールです。LoRa という変調方式を使っており、長距離通信が可能です。
 
+マイコンとは UART で通信します。
+
 ![alt text](image.png)
 
-1 対 1 で通信し、通信相手はチャンネルで選択します。920MHz 付近で微妙に周波数を変えることで、混線せず通信しています。
+1 対 1 で通信し、通信相手はチャンネルで選択します。920MHz 付近で微妙に周波数を変えることで通信します。
 
 | チャンネル | 周波数 (MHz) |
 | :--------: | :----------: |
@@ -120,6 +122,8 @@ void loop()
 コントローラーには [udonrobo/ControllerUnit](https://github.com/udonrobo/ControllerUnit) レポジトリの Firmware/Firmware.ino が書き込まれています。
 
 `Udon::E220PadPS5` クラスは E220 からのデータ受信を行い、ボタンやスティックの状態を取得できるクラスです。
+
+`.serial` には E220 と接続されているシリアルポートを指定し、m0, m1, aux と接続しているピン番号をそれぞれ指定します。
 
 ```cpp linenums="1" title="E220PadPS5クラス最小構成"
 #include <Udon.hpp>
