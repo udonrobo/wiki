@@ -4,19 +4,19 @@
 
 - プログラミング言語
 
-- コンパイル言語であり、生成された実行ファイルが CPU 上で直接動作するため高速
+- コンパイル言語であり、生成された実行ファイルは CPU 上で直接動作するため高速
 
 - C 言語の超拡張言語。3 年ごとにバージョンアップが行われ、次は C++26
 
-- 身近なとこで使われてる。身近過ぎて使われていることすら気づかない
+- 身近なとこで使われています。身近過ぎて使われていることすら気づかない程です。
 
 使用例
 
-- Windows, 家電, Web サーバー …
+- Chromium (Chrome, Edge 等ブラウザの基盤) <https://github.com/chromium/chromium>
 
-- Chromium <https://github.com/chromium/chromium>
+- clang (C++コンパイラ) <https://github.com/llvm/llvm-project>
 
-- コンパイラの素 (LLVM) <https://github.com/llvm/llvm-project>
+- V8 JavaScript エンジン <https://github.com/v8/v8>
 
 ## Visual Studio の使い方
 
@@ -32,7 +32,7 @@ Visual Studio を起動
 
 ![alt text](image-4.png){width=700px}
 
-保存場所を選択し、プロジェクト名を入力 (ソリューション名は同じで良い)
+保存場所を選択し、プロジェクト名を入力 (ソリューション名は同じで大丈夫です)
 
 ![alt text](image-5.png){width=700px}
 
@@ -104,7 +104,7 @@ F10 キーを押すと、ステップ実行モードに入ります。F10 キー
 
 ### 🌟main 関数について
 
-C++のプログラムの開始地点、エントリーポイント
+C++のプログラムの開始地点で、エントリーポイントとも呼ばれます。
 
 ```cpp
 int main()
@@ -113,7 +113,7 @@ int main()
 }
 ```
 
-main 関数の戻り値は実行環境側が受け取る。
+main 関数の戻り値は実行環境側が受け取ります。
 
 ![alt text](image-1.png){width=500px}
 
