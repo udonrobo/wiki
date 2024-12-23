@@ -8,22 +8,22 @@ copyright: udonrobo © 2024
 
 nav:
   - ホーム: index.md
-  - 部品の制御方法:
+  - 部品:
     - アクチュエータ:
-        - DCモーター: actuator/motor/index.md
-        - ロボマスモーター: actuator/robomaster_motor/index.md
-        - サーボモーター: actuator/servo/index.md
-        - ソレノイド: actuator/solenoid/index.md
-        - 電磁弁: actuator/valve/index.md
+        - DCモーター: parts/motor/index.md
+        - ロボマスモーター: parts/robomaster_motor/index.md
+        - サーボモーター: parts/servo/index.md
+        - ソレノイド: parts/solenoid/index.md
+        - 電磁弁: parts/valve/index.md
     - センサ:
-        - スイッチ: sensor/switch/index.md
-        - ロータリーエンコーダー: sensor/rotary_encoder/index.md
-        - BNO055(ジャイロセンサ): sensor/bno055/index.md
+        - スイッチ: parts/switch/index.md
+        - ロータリーエンコーダー: parts/rotary_encoder/index.md
+        - BNO055(ジャイロセンサ): parts/bno055/index.md
   # - 通信:
   #     - コントローラー: communication/controller/index.md
   - 基板:
       - JLCPCB 発注手順: pcb/jlcpcb/index.md
-  - 制御班勉強会:
+  - 講習会:
       - はじめに: practice/index.md
       - コマンド: practice/command/index.md
       - Git・GitHub: practice/git/index.md
