@@ -40,7 +40,7 @@ read(data);
 - {==主従関係がある==}
 - 大抵のマイコンには I2C の回路が内蔵されており、ピン同士を繋げるだけで通信できる為、回路は簡単
 
-![alt text](image.png)
+![alt text](i2c.png)
 
 </div>
 
@@ -52,13 +52,13 @@ read(data);
 
 I2C の性質上、マイコン 1 台に 1 つのアドレスを割り当てます (次で紹介する CAN 通信では複数の ID を割り振れます)
 
-![alt text](image-1.png)
+![alt text](i2c_real.png)
 
 ### 🌟 マスターからスレーブへ送信する場合
 
 スレーブのアドレスを指定し、データを送信します。
 
-![alt text](image-2.png)
+![alt text](i2c_send.png)
 
 マスター側のソースコード
 
@@ -138,7 +138,7 @@ sequenceDiagram
 
 スレーブは自発的にデータを送信しません。マスターがデータを要求し、スレーブがそれに応じてデータを送信します。
 
-![alt text](image-3.png)
+![alt text](i2c_receive.png)
 
 マスター側のソースコード
 
@@ -254,7 +254,7 @@ sequenceDiagram
 - マイコンには CAN 通信用の回路が内蔵されていない為、外付けの CAN モジュールが必要
 - 終端抵抗が必要
 
-![alt text](image-4.png)
+![alt text](can.png)
 
 </div>
 
@@ -278,7 +278,7 @@ CAN 通信は主従関係がないため、各マイコンが好きなタイミ�
 
 また一つのマイコンに複数の ID を割り振てられるため、部では ID ごとにモーターやセンサーなどのデバイスを割り当てています。
 
-![alt text](image-6.png)
+![alt text](can_real.png)
 
 ### 🌟 UdonLibrary を使った通信
 
@@ -311,7 +311,7 @@ else
 
 ### 🌟 1 ノード対 1 ノードで通信してみる
 
-![alt text](image-7.png)
+![alt text](can_1to1.png)
 
 送信側のソースコード
 
@@ -387,7 +387,7 @@ void loop()
 
 送信者と受信者を複数作成することで、マイコン内に複数のノードを立てることができます。
 
-![alt text](image-8.png)
+![alt text](can_2to2.png)
 
 送信側のソースコード
 
@@ -529,7 +529,7 @@ void loop()
 
     モーターの出力値は `Udon::Message::Motor` で、エンコーダの値は `Udon::Message::Encoder` でやり取りするとします。
 
-    ![alt text](image-6.png)
+    ![alt text](can_real.png)
 
 === "答え"
 

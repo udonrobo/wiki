@@ -147,15 +147,11 @@ public:
     {
     }
     
-    bool isPressed() const
+    Udon::Optional<bool> isPressed() const
     {
-        if (const auto message = canReader.getMessage())
-        {
-            return message->press;
-        }
-        
-        Serial.println("Switch node not found");
-        return false;
+        return canReader
+            .getMessage()
+            .transform([](const auto& message) { return message.press; });
     }
 };
 
@@ -180,15 +176,17 @@ void loop()
 {
     bus.update();
 
-    const bool isPressed1 = switches[0].isPressed();
-    const bool isPressed2 = switches[1].isPressed();
-    const bool isPressed3 = switches[2].isPressed();
-    const bool isPressed4 = switches[3].isPressed();
-
-    Serial.println(isPressed1);
-    Serial.println(isPressed2);
-    Serial.println(isPressed3);
-    Serial.println(isPressed4);
+    for (const auto& sw : switches)
+    {
+        if (const auto isPressed = sw.isPressed())
+        {
+            Serial.println(*isPressed);
+        }
+        else
+        {
+            Serial.println("Switch node not found");
+        }
+    }
 
     loopCtrl.update();
 }

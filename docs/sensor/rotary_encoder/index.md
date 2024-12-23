@@ -193,15 +193,17 @@ void loop()
 {
     bus.update();
 
-    const int32_t count1 = encoders[0].getCount();
-    const int32_t count2 = encoders[1].getCount();
-    const int32_t count3 = encoders[2].getCount();
-    const int32_t count4 = encoders[3].getCount();
-
-    Serial.println(count1);
-    Serial.println(count2);
-    Serial.println(count3);
-    Serial.println(count4);
+    for (auto& encoder : encoders)
+    {
+        if (const auto count = encoder.getCount())
+        {
+            Serial.println(*count);
+        }
+        else
+        {
+            Serial.println("Encoder node not found");
+        }
+    }
 
     loopCtrl.update();
 }

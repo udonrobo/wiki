@@ -10,19 +10,19 @@
 
 === "小電流用"
 
-    ![alt text](<Photo 2024-12-19, 18 25 03.jpg>)
+    ![alt text](low_power_wire.jpg)
 
 === "大電流用"
 
-    ![alt text](<Photo 2024-12-19, 18 38 58.jpg>)
+    ![alt text](high_power_wire.jpg)
 
 === "制御線が 2 線のタイプ"
 
     DIR 線と PWM 線の 2 線のタイプです。あまり使わないので配線図は割愛します。
 
-    ![alt text](<Photo 2024-12-19, 18 41 29.jpg>)
+    ![alt text](cytron_front.jpg)
 
-    ![alt text](<Photo 2024-12-19, 18 41 36.jpg>)
+    ![alt text](cytron_back.jpg)
 
 ## 🌟 ファームウエア / 制御線 3 線
 
@@ -228,11 +228,6 @@ static Udon::LoopCycleController loopCtrl{ 10000 };
 void setup()
 {
     bus.begin();
-
-    for (auto& motor : motors)
-    {
-        motor.begin();
-    }
 }
 
 void loop()
