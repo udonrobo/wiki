@@ -85,12 +85,12 @@ static Udon::Motor3 motor{ 0, 1, 2 };
 
 void setup()
 {
-    motor.begin();
+    motor.begin();
 }
 
 void loop()
 {
-    motor.move(200);
+    motor.move(200);
 }
 ```
 
