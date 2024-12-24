@@ -19,10 +19,10 @@ nav:
       - スイッチ: parts/switch/index.md
       - ロータリーエンコーダー: parts/rotary_encoder/index.md
       - BNO055(ジャイロセンサ): parts/bno055/index.md
-  # - 通信:
-  #     - コントローラー: communication/controller/index.md
+    # - 通信:
+    #   - コントローラー: communication/controller/index.md
   - 基板:
-      - JLCPCB 発注手順: pcb/jlcpcb/index.md
+    - JLCPCB 発注手順: pcb/jlcpcb/index.md
   - 講習会:
     - はじめに: practice/index.md
     - コマンド: practice/command/index.md
