@@ -15,10 +15,10 @@ Adafruit の NeoPixel ライブラリを使用します。
 ```cpp title="RaspberryPi Pico での使用例"
 #include <Adafruit_NeoPixel.h>
 
-const int pin = 0;
-const int nLed = 20;
+const int pin  = 0;    // 制御線のピン番号
+const int nLed = 20;   // LED の数
 
-static Adafruit_NeoPixel leds{ nLed, pin, NEO_GRB + NEO_KHZ800 };
+static Adafruit_NeoPixel leds{ nLed, pin };
 
 void setup()
 {
