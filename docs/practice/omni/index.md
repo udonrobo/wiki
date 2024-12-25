@@ -387,7 +387,7 @@ if (maxPower > limitPower)
 
 ### 🌟 実装 (最終)
 
-```cpp linenums="1" hl_lines="37-47"
+```cpp linenums="1" hl_lines="42-52"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -407,6 +407,11 @@ void setup()
 {
     const int channel = 3;
     pad.begin(channel);
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 void loop()
@@ -523,7 +528,7 @@ void loop()
 
 旋回角を 0 度に補正する場合は次のようになります。
 
-```cpp linenums="1" hl_lines="16-20 26 32 39-52 72"
+```cpp linenums="1" hl_lines="16-20 26 37 44-57 77"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -550,6 +555,11 @@ void setup()
     const int channel = 3;
     pad.begin(channel);
     gyro.begin();
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 void loop()
@@ -605,7 +615,7 @@ void loop()
 
 現在は目標角度を 0 にしていますが、旋回中は目標角度を現在の旋回角度にすることで旋回補正を無効にします。
 
-```cpp linenums="1" hl_lines="30 45-53"
+```cpp linenums="1" hl_lines="35 50-58"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -632,6 +642,11 @@ void setup()
     const int channel = 3;
     pad.begin(channel);
     gyro.begin();
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 // 目標の旋回角
@@ -697,7 +712,7 @@ void loop()
 
 具体的には、旋回終了時刻を記録し、その時刻から一定時間経過後に補正を有効にします。
 
-```cpp linenums="1" hl_lines="33 48-60"
+```cpp linenums="1" hl_lines="38 53-65"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -724,6 +739,11 @@ void setup()
     const int channel = 3;
     pad.begin(channel);
     gyro.begin();
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 // 目標の旋回角
@@ -804,7 +824,7 @@ void loop()
 
 ![alt text](image-7.png)
 
-```cpp linenums="1" hl_lines="46-50 52-57 77-80"
+```cpp linenums="1" hl_lines="51-55 57-62 82-85"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -831,6 +851,11 @@ void setup()
     const int channel = 3;
     pad.begin(channel);
     gyro.begin();
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 // 目標の旋回角
@@ -967,7 +992,7 @@ else
 ## 🌟 完成形
 
 
-```cpp linenums="1" hl_lines="40"
+```cpp linenums="1" hl_lines="45"
 #include <Udon.hpp>
 #include "Motor.hpp"
 
@@ -994,6 +1019,11 @@ void setup()
     const int channel = 3;
     pad.begin(channel);
     gyro.begin();
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
 }
 
 // 目標の旋回角
