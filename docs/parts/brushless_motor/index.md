@@ -6,13 +6,19 @@ ESC と組み合わせて使用することで、制御できます。PWM で制
 
 ## 🌟 配線
 
-部で使用しているモーターの定格電圧は ~24V です。
+定格電圧は ESC によって決まります。
 
--- 画像 --
+大抵の場合、ESC に対応しているリポバッテリーのセル数が記載されています。写真の場合、2-6 セル とあるので 3 セル + 3 セルのバッテリーをつないでいます。
+
+=== "全体"
+
+    ![alt text](wire.jpg)
+
+=== "アップ"
+
+    ![alt text](up.jpg)
 
 ## 🌟 ファームウエア
-
-細かく制御するために `writeMicroseconds` 関数を使用します。この関数は、指定したマイクロ秒でモーターを制御します。
 
 ```cpp title="RaspberryPi Pico での使用例"
 #include <Udon.hpp>
@@ -24,22 +30,27 @@ void setup()
     // モーターの制御ピンを設定
     motor.attach(3);
 
-    // キャリブレーション
+    // 最大パルス幅を送信
     motor.writeMicroseconds(2000);
-    delay(100);
+    delay(2000);
+
+    // 最小パルス幅を送信
     motor.writeMicroseconds(1000);
-    delay(3000);
+    delay(2000);
 }
 
 void loop()
 {
-    int power = 100;
-    motor.writeMicroseconds(map(power, 0, 255, 1470, 2000));
+    motor.writeMicroseconds(1100);
 }
 ```
 
-!!! note "注意"
+!!! warning
 
-    単方向用の ESC はデューティー比が最小のときに停止します。
+    想像よりかなり速く回転します。安全面から最小値から少しずつ値を増やしていくことをおすすめします。
 
-    両回転対応の ESC はデューティー比が中間値のとき停止します。
+!!! note "値の範囲"
+
+    単方向用の ESC はパルス幅が最小のときに停止します。
+
+    両回転対応の ESC はパルス幅が中間値のとき停止します。(部にある ESC の場合)

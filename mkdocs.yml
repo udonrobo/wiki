@@ -8,7 +8,8 @@ copyright: udonrobo © 2024
 
 nav:
   - ホーム: index.md
-  - 部品:
+  - 各部品の制御方法:
+    - 電源: parts/power/index.md
     - アクチュエータ:
       - DCモーター: parts/motor/index.md
       - ロボマスモーター: parts/robomaster_motor/index.md
@@ -22,7 +23,6 @@ nav:
       - BNO055(ジャイロセンサ): parts/bno055/index.md
     - その他:
       - シリアルLED: parts/serial_led/index.md
-      - 電源: parts/power/index.md
     # - 通信:
     #   - コントローラー: communication/controller/index.md
   - 基板:

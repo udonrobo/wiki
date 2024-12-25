@@ -24,6 +24,10 @@
 
     ![alt text](cytron_back.jpg)
 
+=== "制御線"
+
+    ![alt text](ctrl_wire.jpg)
+
 ## 🌟 ファームウエア / 制御線 3 線
 
 ピン番号は基板上に記載されています。

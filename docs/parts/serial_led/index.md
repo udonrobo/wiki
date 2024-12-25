@@ -6,11 +6,28 @@
 
 定格電圧は 5V です。
 
--- 画像 --
+=== "全体"
+
+    ![alt text](wire.jpg)
+
+=== "アップ"
+
+    写真の基板はコネクタの配列がおかしいため、LEDとの接続部分を交差させています。
+
+    ![alt text](up.jpg)
 
 ## 🌟 ファームウエア
 
 Adafruit の NeoPixel ライブラリを使用します。
+
+??? note "追加していない場合"
+
+    ライブラリを追加していない場合、ライブラリフォルダに追加してください。
+
+    ```sh
+    cd ~/Documents/Arduino/libraries
+    git clone https://github.com/adafruit/Adafruit_NeoPixel.git
+    ```
 
 ```cpp title="RaspberryPi Pico での使用例"
 #include <Adafruit_NeoPixel.h>
@@ -23,7 +40,7 @@ static Adafruit_NeoPixel leds{ nLed, pin };
 void setup()
 {
     leds.begin();
-    leds.setBrightness(100);  // 最大出力は明るすぎるので調整
+    leds.setBrightness(50);  // 最大出力は明るすぎるので調整
 }
 
 void loop()
