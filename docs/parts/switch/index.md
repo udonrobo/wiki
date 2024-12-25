@@ -17,11 +17,12 @@ digitalRead() 関数を使ってスイッチの状態を読み取ります。押
 押すとグランドに接続されるので、押されたときに LOW になります。
 
 ```cpp
-const int pin = 2;  // スイッチのピン番号
+const int pin = 26;  // スイッチのピン番号
 
 void setup()
 {
     Serial.begin(115200);
+    
     pinMode(pin, INPUT_PULLUP);
 }
 
