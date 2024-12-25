@@ -314,6 +314,32 @@ m3 = +x + y + turn
 ### 🌟 実装 (途中)
 
 ```cpp
+#include <Udon.hpp>
+#include "Motor.hpp"
+
+static Motor motor0{ 19, 17, 18 };    // 右前
+static Motor motor1{ 16, 15, 14 };    // 右後
+static Motor motor2{ 28, 26, 27 };    // 左後
+static Motor motor3{ 22, 20, 21 };    // 左前
+
+static Udon::E220PadPS5 pad{{
+    .serial  = Serial1,
+    .m0      = 13,
+    .m1      = 12,
+    .aux     = 2,
+}};
+
+void setup()
+{
+    const int channel = 3;
+    pad.begin(channel);
+
+    motor0.begin();
+    motor1.begin();
+    motor2.begin();
+    motor3.begin();
+}
+
 void loop()
 {
     pad.update();
