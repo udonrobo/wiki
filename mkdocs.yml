@@ -55,6 +55,7 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+    - header.autohide
 
   palette:
     - media: "(prefers-color-scheme: light)"
