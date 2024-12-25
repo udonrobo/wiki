@@ -12,6 +12,8 @@
 
     ![alt text](low_power_wire.jpg)
 
+    ![alt text](ctrl_wire.jpg)
+
 === "大電流用"
 
     ![alt text](high_power_wire.jpg)
@@ -23,10 +25,6 @@
     ![alt text](cytron_front.jpg)
 
     ![alt text](cytron_back.jpg)
-
-=== "制御線"
-
-    ![alt text](ctrl_wire.jpg)
 
 ## 🌟 ファームウエア / 制御線 3 線
 
@@ -67,7 +65,7 @@
 
     void loop()
     {
-        motor.move(100);
+        motor.move(100);  // -255~255 の範囲でモーターを制御
     }
     ```
 
@@ -105,7 +103,7 @@
 
     void loop()
     {
-        motor.move(100);
+        motor.move(100);  // -255~255 の範囲でモーターを制御
     }
     ```
 

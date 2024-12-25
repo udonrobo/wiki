@@ -4,7 +4,7 @@
 
 ## 🌟 概要
 
-デイジーチェーン接続できるシリアル LED です。そのため制御線 1 本で複数の LED を制御できます。
+デイジーチェーン接続できるフルカラー LED です。制御線 1 本で複数の LED を制御できます。
 
 ## 🌟 配線
 
@@ -20,13 +20,13 @@
 
 === "アップ"
 
-    写真の基板はコネクタの配列がおかしいため、LEDとの接続部分を交差させています。
+    写真の基板はコネクタの配列がおかしいため、LEDとの接続部分で配線を交差させています。
 
     ![alt text](up.jpg)
 
 ## 🌟 ファームウエア
 
-[Adafruit の NeoPixel ライブラリ](https://github.com/adafruit/Adafruit_NeoPixel) を使用します。
+[Adafruit_NeoPixel ライブラリ](https://github.com/adafruit/Adafruit_NeoPixel) を使用します。
 
 ??? note "追加していない場合"
 
@@ -40,8 +40,8 @@
 ```cpp title="RaspberryPi Pico での使用例"
 #include <Adafruit_NeoPixel.h>
 
-const int pin  = 0;    // 制御線のピン番号
-const int nLed = 20;   // LED の数
+const int pin  = 27;    // 制御線のピン番号
+const int nLed = 5;     // LED の数
 
 static Adafruit_NeoPixel leds{ nLed, pin };
 
@@ -53,10 +53,13 @@ void setup()
 
 void loop()
 {
-    for (int i = 0; i < leds.numPixels(); ++i)
-    {
-        leds.setPixelColor(i, 0xaaaaaa);
-    }
+    const int n = leds.numPixels();            // LED の数
+
+    leds.setPixelColor(0, 0xff2222);           // カラーコード形式
+    leds.setPixelColor(1, 0x22ff22);
+    leds.setPixelColor(2, 0x22, 0x22, 0xff);   // r, g, b 形式
+    leds.setPixelColor(3, 0xff, 0x22, 0xff);
+    leds.setPixelColor(4, 0x22, 0xff, 0xff);
 
     leds.show();
 
