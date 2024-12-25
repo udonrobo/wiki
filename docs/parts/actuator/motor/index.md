@@ -8,6 +8,8 @@
 
 マブチ 385 モータの場合の配線図です。モーターによって定格電圧が異なるので、適切な電圧を供給してください。この場合は 24V です。
 
+定格電圧はモーターの仕様書を参照してください。マブチモーターの場合は [こちら](https://product.mabuchi-motor.co.jp/search.html?method=4)
+
 === "小電流用"
 
     ![alt text](low_power_wire.jpg)

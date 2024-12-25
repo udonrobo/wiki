@@ -9,20 +9,22 @@ copyright: udonrobo © 2024
 nav:
   - ホーム: index.md
   - 部品:
-    - 電源: parts/power/index.md
+    - 電源: 
+      - 電源回路の構成: parts/power/config/index.md
+      - 電源モジュール: parts/power/module/index.md
     - アクチュエータ:
-      - DCモーター: parts/motor/index.md
-      - ロボマスモーター: parts/robomaster_motor/index.md
-      - サーボモーター: parts/servo/index.md
-      - ブラシレスモーター: parts/brushless_motor/index.md
-      - ソレノイド: parts/solenoid/index.md
-      - 電磁弁: parts/valve/index.md
+      - DCモーター: parts/actuator/motor/index.md
+      - ロボマスモーター: parts/actuator/robomaster_motor/index.md
+      - サーボモーター: parts/actuator/servo/index.md
+      - ブラシレスモーター: parts/actuator/brushless_motor/index.md
+      - ソレノイド: parts/actuator/solenoid/index.md
+      - 電磁弁: parts/actuator/valve/index.md
     - センサ:
-      - スイッチ: parts/switch/index.md
-      - ロータリーエンコーダー: parts/rotary_encoder/index.md
-      - BNO055(ジャイロセンサ): parts/bno055/index.md
+      - スイッチ: parts/sensor/switch/index.md
+      - ロータリーエンコーダー: parts/sensor/rotary_encoder/index.md
+      - BNO055(ジャイロセンサ): parts/sensor/bno055/index.md
     - その他:
-      - シリアルLED: parts/serial_led/index.md
+      - シリアルLED: parts/other/serial_led/index.md
     # - 通信:
     #   - コントローラー: communication/controller/index.md
   - 基板:
