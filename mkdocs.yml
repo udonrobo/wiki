@@ -8,7 +8,7 @@ copyright: udonrobo © 2024
 
 nav:
   - ホーム: index.md
-  - 各部品の制御方法:
+  - 部品:
     - 電源: parts/power/index.md
     - アクチュエータ:
       - DCモーター: parts/motor/index.md
