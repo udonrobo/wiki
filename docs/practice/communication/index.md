@@ -529,6 +529,8 @@ void loop()
 
     モーターの出力値は `Udon::Message::Motor` で、エンコーダの値は `Udon::Message::Encoder` でやり取りするとします。
 
+    Raspberry Pi Pico はバスクラスに `Udon::CanBusSpi` を使用します。
+
     ![alt text](can_real.png)
 
 === "答え"

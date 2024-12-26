@@ -9,7 +9,7 @@ copyright: udonrobo © 2024
 nav:
   - ホーム: index.md
   - 部品:
-    - 電源: 
+    - 電源:
       - 電源回路の構成: parts/power/config/index.md
       - 電源モジュール: parts/power/module/index.md
     - アクチュエータ:

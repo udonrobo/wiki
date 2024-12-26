@@ -8,7 +8,7 @@ UdonLibrary は部のライブラリです。
 
 ## 開発経緯・歴史
 
-追える範囲だと部のライブライは 2016 年から存在しています。当時はヘッダーファイルが集まった zip ファイルを回す形で利用していました。
+追える範囲だと部のライブラリは 2016 年から存在しています。当時はヘッダーファイルが集まった zip ファイルを回す形で利用していました。
 
 CAN 通信への移行に伴って、ライブラリを整理し、GitHub で管理する形になりました。UdonLibrary は 2022/09 から存在します。
 
@@ -76,9 +76,7 @@ void loop()
 
 基本的にドキュメントを参照すると使い方が書いてあります。
 
-モーターの場合)
-
-```cpp
+```cpp title="モーターを動かす例"
 #include <Udon.hpp>
 
 static Udon::Motor3 motor{ 0, 1, 2 };
@@ -104,9 +102,7 @@ void loop()
 
 実装を見たい場合、`src` フォルダにソースコードがあります。GitHub や VSCode で見ることができます。
 
-VSCode で開く場合)
-
-```sh
+```sh title="VSCode で開く場合"
 code ~/Documents/Arduino/libraries/UdonLibrary
 ```
 

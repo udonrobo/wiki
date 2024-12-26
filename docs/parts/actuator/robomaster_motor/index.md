@@ -39,12 +39,12 @@ CAN 通信経由で制御できるブラシレスモーターです。モータ�
 
 <https://github.com/udonrobo/UdonLibrary/blob/master/docs/Driver/RoboMasterMotor.md>
 
-```cpp title="C620 ドライバ & Teensy4.0 で電流制御する例"
+```cpp title="C610 ドライバ & Teensy4.0 で電流制御する例"
 #include <Udon.hpp>
 
 static Udon::CanBusTeensy<CAN2> bus;  // CAN2 ポートを使用
 
-static Udon::RoboMasterC620 motor{ bus, 1 };  // モーターID: 1
+static Udon::RoboMasterC610 motor{ bus, 1 };  // モーターID: 1
 
 void setup()
 {
@@ -55,7 +55,7 @@ void loop()
 {
     bus.update();
 
-    motor.setCurrent(1000);  // 1000 mA で動作
+    motor.setCurrent(1000);  // 1000 mA で動作 (C610 の場合 -10000~10000)
 }
 ```
 
