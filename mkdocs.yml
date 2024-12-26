@@ -25,8 +25,10 @@ nav:
       - BNO055(ジャイロセンサ): parts/sensor/bno055/index.md
     - その他:
       - シリアルLED: parts/other/serial_led/index.md
-    # - 通信:
-    #   - コントローラー: communication/controller/index.md
+  - アルゴリズム:
+    # - オムニホイール: algorithm/omni/index.md
+    # - 独立ステアリング機構: algorithm/steering/index.md
+    - 計測輪: algorithm/measure_wheel/index.md
   - 基板:
     - JLCPCB 発注手順: pcb/jlcpcb/index.md
   - 講習会:
