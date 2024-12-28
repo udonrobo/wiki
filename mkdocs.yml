@@ -11,7 +11,7 @@ nav:
   - 部品:
     - 電源:
       - 電源回路の構成: parts/power/config/index.md
-      - 電源モジュール: parts/power/module/index.md
+      # - 電源モジュール: parts/power/module/index.md
     - アクチュエータ:
       - DCモーター: parts/actuator/motor/index.md
       - ロボマスモーター: parts/actuator/robomaster_motor/index.md

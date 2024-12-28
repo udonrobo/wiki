@@ -8,11 +8,11 @@
 
 === "全体図"
 
-    ![alt text](<Photo 2024-12-21, 11 36 26.jpg>)
+    ![alt text](wire.jpg)
 
 === "中継用配線"
 
-    ![alt text](IMG_20230216_123333.jpg)
+    ![alt text](relay_wire.jpg)
 
 ## 🌟 最小構成のコード例
 
@@ -81,10 +81,11 @@
 ```cpp title="サブマイコン側 (Raspberry Pi Pico)"
 #include <Udon.hpp>
 
+/// @brief エンコーダーのカウント値をCANで送信するクラス
 class CanEncoderWriter
 {
-    Udon::EncoderPico encoder;
-    Udon::CanWriter<Udon::Message::Encoder> canWriter;
+    Udon::EncoderPico                       encoder;    // エンコーダー
+    Udon::CanWriter<Udon::Message::Encoder> canWriter;  // CAN 送信者
 
 public:
     CanEncoderWriter(Udon::EncoderPico&& encoder, Udon::CanWriter<Udon::Message::Encoder>&& canWriter)
@@ -100,20 +101,19 @@ public:
 
     void update()
     {
-        const int32_t count = encoder.read();
-        canWriter.setMessage({ count });
+        canWriter.setMessage({ encoder.read() });
     }
 };
 
 static Udon::CanBusSpi bus;
 
 static CanEncoderWriter encoders[] {
-    CanEncoderWriter {
+    CanEncoderWriter {   // 12, 13 ピンのエンコーダーを読み、CAN ID 0x001 で送信
         Udon::EncoderPico{ 12, 13 },
         Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x001 }
     },
-    CanEncoderWriter {
-        Udon::EncoderPico{ 14, 15 },    
+    CanEncoderWriter {   // 14, 15 ピンのエンコーダーを読み、CAN ID 0x002 で送信
+        Udon::EncoderPico{ 14, 15 },
         Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x002 }
     },
     CanEncoderWriter {
@@ -154,6 +154,7 @@ void loop()
 ```cpp title="メインマイコン側 (Teensy4.0)"
 #include <Udon.hpp>
 
+/// @brief CAN で送られてきたエンコーダーのカウント値を読むクラス
 class CanEncoderReader
 {
     Udon::CanReader<Udon::Message::Encoder> canReader;
@@ -164,6 +165,7 @@ public:
     {
     }
 
+    /// @brief カウント値取得
     Udon::Optional<int32_t> getCount() const
     {
         return canReader
