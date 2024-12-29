@@ -27,6 +27,14 @@ hide:
 
 適当なディレクトリで以下コマンドを実行し、mkdocs と mkdocs-material をインストールします。pip がインストールされていない場合、Python をインストールしてください。
 
+??? note "Python インストール方法"
+
+    [Python 公式サイト](https://www.python.org/downloads/) からインストーラーをダウンロードし、インストールしてください。もしくは Windows Package Manager (winget) を使用してインストールできます。
+
+    ```sh
+    winget install -i --id Python.Python.3.13
+    ```
+
 ```sh
 pip install mkdocs
 pip install mkdocs-material
