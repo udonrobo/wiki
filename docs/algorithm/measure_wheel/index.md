@@ -6,15 +6,29 @@
 
 ## 🌟 計測輪の配置
 
-X 軸用の計測輪はロボットが X 軸方向へ移動したときオムニが回転し、Y 軸方向へ移動したときオムニが滑る方向に配置します。Y 軸用はその逆です。
+次のような条件を満たす位置に配置する必要があります。
 
-また旋回したときに計測輪が回転しないよう配置します。
+- X 軸用計測輪は、ロボットから見て X 軸方向へ移動したときオムニが回転し、Y 軸方向へ移動したときオムニが滑ること
+- Y 軸用計測輪は、ロボットから見て Y 軸方向へ移動したときオムニが回転し、X 軸方向へ移動したときオムニが滑ること
+- 旋回したときに計測輪が回転しないこと
+
+上記の条件を満たす位置を図示すると次のようになります。
+
+![alt text](image-2.png){ width="600" }
+
+よくある配置例です。
 
 ![alt text](image.png){ width="300" }
 
 ## 🌟 考え方
 
-ロボットは直線移動ではなく旋回しながら移動するため、x輪、y輪の計測輪の計測値を回転行列で変換するだけでは正しい位置を計測できません。
+自己位置はフィールドの座標を基準に求めることに注意してください。
+
+まずはロボットが旋回せず移動したと仮定し位置を計測することを考えます。この場合、計測輪から得られたカウント値を旋回角分、回転行列によって回転させると自己位置を得られます。
+
+![alt text](image-1.png)
+
+しかし実際のロボットは直線移動ではなく旋回しながら移動するため、計測輪の計測値を回転行列で変換するだけでは正しい位置を計測できません。
 
 そこで計測値を微分し、細かい直線移動を繰り返していると考え、回転行列後の計測値を足し合わせていくことで座標を計測します。
 
@@ -22,8 +36,8 @@ X 軸用の計測輪はロボットが X 軸方向へ移動したときオムニ
 
 CAN バスには次の表のような `Udon::Message::Encoder` オブジェクトを配信するノードがいるとします。
 
-| ID | 送信データ |
-| --- | --- |
+| ID    | 送信データ       |
+| ----- | ---------------- |
 | 0x001 | x 軸測定用計測輪 |
 | 0x002 | y 軸測定用計測輪 |
 
@@ -34,11 +48,12 @@ class CanEncoderReader
 {
     Udon::CanReader<Udon::Message::Encoder> reader;
 
-    int32_t count{};
+    int32_t count;
 
 public:
-    CanEncoderReader(Udon::CanReader<Udon::Message::Encoder>& reader)
-        : reader{ reader }
+    CanEncoderReader(Udon::CanReader<Udon::Message::Encoder>&& reader)
+        : reader{ std::move(reader) }
+        , count{}
     {}
 
     /**
@@ -70,10 +85,11 @@ class Odometry
     Udon::Pos pos;
 
 public:
-    Odometory(CanEncoderReader&& xWheel, CanEncoderReader&& yWheel, Udon::BNO055&& gyro)
+    Odometry(CanEncoderReader&& xWheel, CanEncoderReader&& yWheel, Udon::BNO055&& gyro)
         : xWheel{ std::move(xWheel) }
         , yWheel{ std::move(yWheel) }
         , gyro{ std::move(gyro) }
+        , pos{}
     {}
 
     /**
@@ -101,10 +117,10 @@ public:
     {
         gyro.update();
 
-        const auto xDeltaOpt = xWheel.getDeltaCount();
-        const auto yDeltaOpt = yWheel.getDeltaCount();
-        
-        if (not xDeltaOpt || not yDeltaOpt)
+        const auto xDeltaCountOpt = xWheel.getDeltaCount();
+        const auto yDeltaCountOpt = yWheel.getDeltaCount();
+
+        if (not xDeltaCountOpt || not yDeltaCountOpt)
         {
             Serial.println("[Error:Odometry] encoder error");
             return Udon::nullopt;
@@ -113,7 +129,8 @@ public:
         static constexpr auto ppr = 8192;  // エンコーダー分解能
         static constexpr auto r   = 50.8;  // 計測輪直径
 
-        const auto delta = Udon::Vec2{ *xDeltaOpt, *yDeltaOpt } * r * PI / ppr;
+        const Udon::Vec2 deltaCount{ static_cast<double>(*xDeltaCountOpt), static_cast<double>(*yDeltaCountOpt) };
+        const Udon::Vec2 delta = deltaCount * r * PI / ppr;
 
         pos.turn = gyro.getYaw();
         pos.vector += delta.rotated(pos.turn);
@@ -124,9 +141,9 @@ public:
 
 static Udon::CanBusTeensy<CAN1> bus;
 
-static Odometory odometry {
-    Udon::CanEncoderReader{ bus, 0x001 },
-    Udon::CanEncoderReader{ bus, 0x002 },
+static Odometry odometry {
+    CanEncoderReader{{ bus, 0x001 }},
+    CanEncoderReader{{ bus, 0x002 }},
     Udon::BNO055{ Wire },
 };
 
