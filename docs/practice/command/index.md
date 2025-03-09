@@ -4,8 +4,6 @@ Windows の場合、コマンドはターミナル上で実行します。
 
 今までエクスプローラーで行っていたファイル操作を、コマンドでもできます。
 
-→ 慣れれば速く、文字なので伝えやすい！
-
 ![alt text](terminal.png)
 
 ターミナルを起動すると、今いるディレクトリが表示されます。
@@ -22,6 +20,60 @@ $
     ディレクトリに移動した状態で起動してくれます！
 
     ![alt text](open_from_explorer.png)
+
+## 環境設定
+
+コマンドを実行する環境は PowerShell や Bash などがあります。ここでは Bash を使います。
+
+Bash を Windows で使う理由は、Linux のシェル環境と互換性があり、学習リソースが豊富なためです。実際の開発や運用にも役立つと思います。Git Bash を使うと Windows でも Bash を使えます。
+
+ターミナルを起動後、次のコマンドを入力し Git Bash をインストールします。バージョン管理ツール Git と一緒にインストールできます。
+
+```sh
+winget install --id Git.Git -e --source winget
+```
+
+新しいプロファイルを追加します。
+
+![alt text](image-2.png){ width="500" }
+
+![alt text](image.png)
+
+各設定項目を入力し、プロファイルの設定をします。
+
+名前(任意)
+
+```txt
+Bash
+```
+
+コマンドライン
+
+```txt
+C:\Program Files\Git\bin\bash.exe --login -i
+```
+
+起動ディレクトリ(任意)
+
+```txt
+C:\Users\ユーザー名\Desktop
+```
+
+アイコン(任意)
+
+```txt
+C:\Program Files\Git\mingw64\share\git\git-for-windows.ico
+```
+
+![alt text](image-1.png)
+
+作成したプロファイルを既定のプロファイルに設定します。これでターミナルを起動すると Bash が起動します。保存を押して一旦ターミナルを閉じます。
+
+![alt text](image-3.png)
+
+再度ターミナルを起動すると、次のように Bash が起動するはずです。
+
+![alt text](image-4.png)
 
 ## 使えると熱いコマンドたち
 
@@ -134,7 +186,7 @@ drwxr-xr-x 1 user 197609         0 12月 15 23:14 AA/
 
 ファイルやディレクトリを既定のプログラムで開く
 
-エクスプローラー上でクリックするのと同じ。結構使います！
+エクスプローラー上でクリックするのと同じです。結構使います！
 
 ```sh
 start <ファイル名 or ディレクトリ名>
@@ -157,9 +209,9 @@ code .
 
 ### 🌟 **winget コマンド**
 
-Window 用パッケージマネージャー
+Window 用パッケージマネージャーです。
 
-コマンド一つでアプリをインストールできるので超楽。
+コマンド一つでアプリをインストールできるので超楽です！
 
 例) Git のインストール <https://git-scm.com/downloads/win>
 

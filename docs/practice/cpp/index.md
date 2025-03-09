@@ -12,9 +12,13 @@
 
 使用例
 
+- ゲームエンジン (Unreal Engine) <https://www.unrealengine.com/ja/>
+
+- 3D モデリングソフト (Blender) <https://github.com/blender/blender>
+
 - Chromium (Chrome, Edge 等ブラウザの基盤) <https://github.com/chromium/chromium>
 
-- clang (C++コンパイラ) <https://github.com/llvm/llvm-project>
+- clang (コンパイラ基盤) <https://github.com/llvm/llvm-project>
 
 - V8 JavaScript エンジン <https://github.com/v8/v8>
 
@@ -74,11 +78,11 @@ Visual Studio を起動
 
 行単位でプログラムを実行し、変数の中身を確認できます。
 
-F10 キーを押すと、ステップ実行モードに入ります。F10 キーを押すたびに、次の行に進みます。
+F10 キーを押すと、ステップ実行モードに入ります。F10 キーを押すたびに、次の行に進みます。F11 キーを押すと、関数の中に入れます。
 
 ![alt text](image-7.png)
 
-変数の上にカーソルを合わせると、その変数の中身を確認できます。
+変数の上にカーソルを合わせると、中身の値を確認できます。
 
 ![alt text](image-8.png){width=500px}
 
@@ -382,9 +386,11 @@ uint8_t RSH = a >> 1; // RSH == 0b0101
 シフト演算はビットを左右にずらす演算です。変数の表現範囲からはみ出たビットは捨てられます。
 
 ```plaintext
-<< 1  1010      >> 1  1010
-----------      -----------
-     10100            01010
+<< 2  1010      >> 2  1010
+----------      ----------
+↓   1010                1010
+----------      ---------- 
+    101000            0010
 ```
 
 ---
