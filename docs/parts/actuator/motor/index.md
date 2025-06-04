@@ -118,6 +118,8 @@
 ```cpp title="サブマイコン側 (Raspberry Pi Pico)"
 #include <Udon.hpp>
 
+/// @brief CAN メッセージを受信し、モーターを制御するクラス
+/// @note 一つのインスタンスで一つのモーターを制御します
 class CanMotorReader
 {
     Udon::CanReader<Udon::Message::Motor> canReader;
@@ -139,7 +141,7 @@ public:
     {
         if (const auto message = canReader.getMessage())
         {
-            motor.move(message->speed);
+            motor.move(message->speed);  // データを受信し、モーターの出力値を設定
         }
         else
         {
@@ -148,8 +150,10 @@ public:
     }
 };
 
+// CAN バス
 static Udon::CanBusSpi bus;
 
+// モーター4台
 static CanMotorReader motors[] {
     CanMotorReader{ 
         Udon::CanReader<Udon::Message::Motor>{ bus, 0x001 },
@@ -169,6 +173,7 @@ static CanMotorReader motors[] {
     },
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 10000 };
 
 void setup()
@@ -197,6 +202,7 @@ void loop()
 ```cpp title="メインマイコン側 (Teensy4.0)"
 #include <Udon.hpp>
 
+/// @brief CAN メッセージを送信し、モーターを制御するクラス
 class CanMotorWriter
 {
     Udon::CanWriter<Udon::Message::Motor> canWriter;
@@ -218,8 +224,11 @@ public:
     }
 };
 
+
+// CAN バス
 static Udon::CanBusTeensy<CAN1> bus;
 
+// モーター4台
 static CanMotorWriter motors[] {
     CanMotorWriter{{ bus, 0x001 }},
     CanMotorWriter{{ bus, 0x002 }},
@@ -227,6 +236,7 @@ static CanMotorWriter motors[] {
     CanMotorWriter{{ bus, 0x004 }},
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 10000 };
 
 void setup()

@@ -81,7 +81,7 @@
 ```cpp title="サブマイコン側 (Raspberry Pi Pico)"
 #include <Udon.hpp>
 
-/// @brief エンコーダーのカウント値をCANで送信するクラス
+/// @brief エンコーダーのカウント値をCANへ送信するクラス
 class CanEncoderWriter
 {
     Udon::EncoderPico                       encoder;    // エンコーダー
@@ -101,20 +101,23 @@ public:
 
     void update()
     {
-        canWriter.setMessage({ encoder.read() });
+        canWriter.setMessage({ encoder.read() });  // エンコーダーのカウント値を取得し、CAN へ送信
     }
 };
 
+
+// CAN バス
 static Udon::CanBusSpi bus;
 
+// ロータリーエンコーダー4つ
 static CanEncoderWriter encoders[] {
-    CanEncoderWriter {   // 12, 13 ピンのエンコーダーを読み、CAN ID 0x001 で送信
-        Udon::EncoderPico{ 12, 13 },
-        Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x001 }
+    CanEncoderWriter {   
+        Udon::EncoderPico{ 12, 13 },                            // 12, 13 ピンのエンコーダーを読み、
+        Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x001 }   // CAN ID 0x001 で送信
     },
-    CanEncoderWriter {   // 14, 15 ピンのエンコーダーを読み、CAN ID 0x002 で送信
-        Udon::EncoderPico{ 14, 15 },
-        Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x002 }
+    CanEncoderWriter {
+        Udon::EncoderPico{ 14, 15 },                            // 14, 15 ピンのエンコーダーを読み、
+        Udon::CanWriter<Udon::Message::Encoder>{ bus, 0x002 }   // CAN ID 0x002 で送信
     },
     CanEncoderWriter {
         Udon::EncoderPico{ 16, 17 },
@@ -126,6 +129,7 @@ static CanEncoderWriter encoders[] {
     },
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 1000 };
 
 void setup()
@@ -154,7 +158,7 @@ void loop()
 ```cpp title="メインマイコン側 (Teensy4.0)"
 #include <Udon.hpp>
 
-/// @brief CAN で送られてきたエンコーダーのカウント値を読むクラス
+/// @brief CAN を介してエンコーダーのカウント値を得るクラス
 class CanEncoderReader
 {
     Udon::CanReader<Udon::Message::Encoder> canReader;
@@ -170,12 +174,15 @@ public:
     {
         return canReader
             .getMessage()
-            .transform([](const auto& message) { return message.count; });
+            .transform([](const auto& message) { return message.count; });  // Udon::Optional<Udon::Message::Encoder> から Udon::Optional<int32_t> に変換
     }
 };
 
+
+// CAN バス
 static Udon::CanBusTeensy<CAN1> bus;
 
+// ロータリーエンコーダー4つ
 static CanEncoderReader encoders[] {
     CanEncoderReader{{ bus, 0x001 }},
     CanEncoderReader{{ bus, 0x002 }},
@@ -183,6 +190,7 @@ static CanEncoderReader encoders[] {
     CanEncoderReader{{ bus, 0x004 }},
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 10000 };
 
 void setup()

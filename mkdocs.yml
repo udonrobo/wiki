@@ -9,38 +9,38 @@ copyright: udonrobo © 2024
 nav:
   - ホーム: index.md
   - 部品:
-    - 電源:
-      - 電源回路の構成: parts/power/config/index.md
-      # - 電源モジュール: parts/power/module/index.md
-    - アクチュエータ:
-      - DCモーター: parts/actuator/motor/index.md
-      - ロボマスモーター: parts/actuator/robomaster_motor/index.md
-      - サーボモーター: parts/actuator/servo/index.md
-      - ブラシレスモーター: parts/actuator/brushless_motor/index.md
-      - ソレノイド: parts/actuator/solenoid/index.md
-      - 電磁弁: parts/actuator/valve/index.md
-    - センサ:
-      - スイッチ: parts/sensor/switch/index.md
-      - ロータリーエンコーダー: parts/sensor/rotary_encoder/index.md
-      - BNO055(ジャイロセンサ): parts/sensor/bno055/index.md
-    - その他:
-      - シリアルLED: parts/other/serial_led/index.md
+      - 電源:
+          - 電源回路の構成: parts/power/config/index.md
+        # - 電源モジュール: parts/power/module/index.md
+      - アクチュエータ:
+          - DCモーター: parts/actuator/motor/index.md
+          - ロボマスモーター: parts/actuator/robomaster_motor/index.md
+          - サーボモーター: parts/actuator/servo/index.md
+          - ブラシレスモーター: parts/actuator/brushless_motor/index.md
+          - ソレノイド: parts/actuator/solenoid/index.md
+          - 電磁弁: parts/actuator/valve/index.md
+      - センサ:
+          - スイッチ: parts/sensor/switch/index.md
+          - ロータリーエンコーダー: parts/sensor/rotary_encoder/index.md
+          - BNO055(ジャイロセンサ): parts/sensor/bno055/index.md
+      - その他:
+          - シリアルLED: parts/other/serial_led/index.md
   - アルゴリズム:
-    # - オムニホイール: algorithm/omni/index.md
-    # - 独立ステアリング機構: algorithm/steering/index.md
-    - 計測輪: algorithm/measure_wheel/index.md
+      # - オムニホイール: algorithm/omni/index.md
+      # - 独立ステアリング機構: algorithm/steering/index.md
+      - 計測輪: algorithm/measure_wheel/index.md
   - 基板:
-    - JLCPCB 発注手順: pcb/jlcpcb/index.md
+      - JLCPCB 発注手順: pcb/jlcpcb/index.md
   - 講習会:
-    - はじめに: practice/index.md
-    - コマンド: practice/command/index.md
-    - Git・GitHub: practice/git/index.md
-    - C++: practice/cpp/index.md
-    - モーターとクラス: practice/motor/index.md
-    - ファイル分割: practice/file_splitting/index.md
-    - UdonLibraryの使い方: practice/udon_library/index.md
-    - オムニを動かそう: practice/omni/index.md
-    - 通信について: practice/communication/index.md
+      - はじめに: practice/index.md
+      - コマンド: practice/command/index.md
+      - Git・GitHub: practice/git/index.md
+      - C++: practice/cpp/index.md
+      - モーターとクラス: practice/motor/index.md
+      - ファイル分割: practice/file_splitting/index.md
+      - UdonLibraryの使い方: practice/udon_library/index.md
+      - オムニを動かそう: practice/omni/index.md
+      - 通信について: practice/communication/index.md
 
 theme:
   name: material
@@ -104,3 +104,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
+# ビルド時間短縮のために変更の監視対象から除外
+plugins:
+  - exclude:
+      glob:
+        - ".git/*"

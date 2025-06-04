@@ -22,7 +22,7 @@ const int pin = 26;  // スイッチのピン番号
 void setup()
 {
     Serial.begin(115200);
-    
+
     pinMode(pin, INPUT_PULLUP);
 }
 
@@ -45,6 +45,7 @@ void loop()
 ```cpp title="サブマイコン側 (Raspberry Pi Pico)"
 #include <Udon.hpp>
 
+/// @brief スイッチを表現するクラス
 class Switch
 {
     uint8_t pin;
@@ -65,6 +66,7 @@ public:
     }
 };
 
+/// @brief スイッチの状態を CAN メッセージとして送信するクラス
 class CanSwitchWriter
 {
     Switch sw;
@@ -84,20 +86,22 @@ public:
 
     void update()
     {
-        const bool isPressed = sw.isPressed();
-        canWriter.setMessage({ isPressed });
+        canWriter.setMessage({ sw.isPressed() });  // スイッチを読み取り CAN へ送信
     }
 };
 
+
+// CAN バス
 static Udon::CanBusSpi bus;
 
+// スイッチ4つ
 static CanSwitchWriter switches[] {
     CanSwitchWriter {
-        Switch{ 2 },
-        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x001 }
+        Switch{ 2 },                                          // 2 番ピンに接続されているスイッチを、
+        Udon::CanWriter<Udon::Message::Switch>{ bus, 0x001 }  // CAN ID 0x001 で送信
     },
     CanSwitchWriter {
-        Switch{ 4 },    
+        Switch{ 4 },
         Udon::CanWriter<Udon::Message::Switch>{ bus, 0x002 }
     },
     CanSwitchWriter {
@@ -110,6 +114,7 @@ static CanSwitchWriter switches[] {
     },
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 1000 };
 
 void setup()
@@ -138,6 +143,7 @@ void loop()
 ```cpp title="メインマイコン側 (Teensy4.0)"
 #include <Udon.hpp>
 
+/// @brief CAN を介してスイッチの状態を読み取るクラス
 class CanSwitchReader
 {
     Udon::CanReader<Udon::Message::Switch> canReader;
@@ -147,17 +153,20 @@ public:
         : canReader{ std::move(canReader) }
     {
     }
-    
+
     Udon::Optional<bool> isPressed() const
     {
         return canReader
             .getMessage()
-            .transform([](const auto& message) { return message.press; });
+            .transform([](const auto& message) { return message.press; });  // Udon::Optional<Udon::Message::Switch> から Udon::Optional<bool> に変換
     }
 };
 
+
+// CAN バス
 static Udon::CanBusTeensy<CAN1> bus;
 
+// スイッチ4つ
 static CanSwitchReader switches[] {
     CanSwitchReader{{ bus, 0x001 }},
     CanSwitchReader{{ bus, 0x002 }},
@@ -165,6 +174,7 @@ static CanSwitchReader switches[] {
     CanSwitchReader{{ bus, 0x004 }},
 };
 
+// ループ周期を一定に制御するクラス
 static Udon::LoopCycleController loopCtrl{ 10000 };
 
 void setup()
