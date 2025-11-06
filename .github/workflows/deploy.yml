@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pipenv
-          pipenv install
+          pipenv sync
 
       - name: Build and deploy the site
         run: pipenv run mkdocs gh-deploy --force
