@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
-          # Pipfile のバージョンと揃える必要がある
+          # Pipfile に記載されている Python のバージョンと揃える必要がある
           python-version: "3.12.3"
 
       - name: Install dependencies
