@@ -1,7 +1,5 @@
 on:
   push:
-    branches:
-      - main
 
 jobs:
   deploy:
@@ -18,4 +16,4 @@ jobs:
           pip install mkdocs-exclude
 
       - name: Build and deploy the site
-        run: mkdocs gh-deploy --force
+        run: mkdocs
