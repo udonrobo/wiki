@@ -1,5 +1,7 @@
 on:
   push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -19,4 +21,4 @@ jobs:
           pipenv sync
 
       - name: Build and deploy the site
-        run: pipenv run mkdocs -V
+        run: pipenv run mkdocs gh-deploy --force
